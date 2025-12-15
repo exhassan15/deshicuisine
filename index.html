@@ -248,56 +248,6 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
     }
 
-    .login-content {
-      background: white;
-      border-radius: 24px;
-      padding: 2.5rem;
-      max-width: 400px;
-      width: 100%;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    }
-
-    .order-card {
-      background: white;
-      border: 2px solid #fed7aa;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .order-card:hover {
-      border-color: #ea580c;
-      box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);
-    }
-
-    .info-box {
-      background: #fef3c7;
-      border: 2px solid #fbbf24;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin: 1rem 0;
-    }
-
-    .success-box {
-      background: #d1fae5;
-      border: 2px solid #10b981;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin: 1rem 0;
-    }
-
-    .code-box {
-      background: #1e293b;
-      color: #e2e8f0;
-      padding: 1rem;
-      border-radius: 8px;
-      font-family: 'Courier New', monospace;
-      font-size: 0.85rem;
-      overflow-x: auto;
-      margin: 0.5rem 0;
-    }
-
     @media (max-width: 768px) {
       .admin-btn {
         width: 50px;
@@ -310,99 +260,36 @@
 </head>
 <body>
 
-  <!-- Admin Button -->
   <button id="adminBtn" class="admin-btn" title="Admin Setup">⚙️</button>
 
-  <!-- Setup Modal -->
   <div id="setupModal" class="modal">
     <div class="modal-content">
       <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-bold text-gray-800">✅ LINE Bot Setup Complete!</h2>
+        <h2 class="text-3xl font-bold text-gray-800">✅ LINE Bot Setup</h2>
         <button id="closeSetup" class="text-4xl text-gray-600 hover:text-gray-800 transition">&times;</button>
       </div>
 
-      <div class="success-box">
+      <div style="background: #d1fae5; border: 2px solid #10b981; border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
         <p class="font-bold text-green-800 mb-2">🎉 Your LINE Bot is Ready!</p>
-        <ul class="text-sm text-green-700 space-y-1 ml-4 list-disc">
-          <li><strong>Channel Access Token:</strong> Configured ✓</li>
-          <li><strong>Your User ID:</strong> Configured ✓</li>
-          <li>Orders will be sent to YOUR LINE account</li>
-          <li>100% FREE forever</li>
-          <li>Works on ANY device instantly</li>
-        </ul>
-      </div>
-
-      <div class="space-y-4">
-        <div class="border-l-4 border-blue-500 pl-4 py-2 bg-blue-50">
-          <h3 class="font-bold text-lg mb-2">📱 How It Works:</h3>
-          <ol class="text-sm space-y-2 ml-4 list-decimal">
-            <li>Customer fills order form on your website</li>
-            <li>Click "Submit Order via LINE"</li>
-            <li>You instantly receive a LINE message</li>
-            <li>You can reply directly in LINE to confirm!</li>
-          </ol>
-        </div>
-
-        <div class="border-l-4 border-green-500 pl-4 py-2 bg-green-50">
-          <h3 class="font-bold text-lg mb-2">🔧 Your LINE Configuration:</h3>
-          <div class="text-sm space-y-2">
-            <p><strong>Channel ID:</strong> 47a939666ca0a3fbba12dcbace29d867</p>
-            <p><strong>User ID:</strong> Udbf73a5ee7a12466f96c15e242dbc8d8</p>
-            <p><strong>Status:</strong> ✅ Active and Ready</p>
-          </div>
-        </div>
-
-        <div class="border-l-4 border-purple-500 pl-4 py-2 bg-purple-50">
-          <h3 class="font-bold text-lg mb-2">🛡️ Important Security Note:</h3>
-          <p class="text-sm">
-            Your LINE credentials are safely stored in your website code. 
-            <strong>Never share your Channel Access Token</strong> with anyone.
-          </p>
-        </div>
-
-        <div class="border-l-4 border-orange-500 pl-4 py-2 bg-orange-50">
-          <h3 class="font-bold text-lg mb-2">📊 Test Your Setup:</h3>
-          <ol class="text-sm space-y-2 ml-4 list-decimal">
-            <li>Fill out the order form with test data</li>
-            <li>Click "Submit Order via LINE"</li>
-            <li>Check your LINE app for notification</li>
-            <li>If received, your setup is perfect!</li>
-          </ol>
-        </div>
-
-        <div class="success-box mt-4">
-          <p class="font-bold text-green-800 mb-2">💡 Pro Tip:</p>
-          <ul class="text-sm text-green-700 space-y-1 ml-4 list-disc">
-            <li>Keep your phone nearby to respond quickly to orders</li>
-            <li>You can use LINE to confirm orders with customers</li>
-            <li>All orders are also saved in browser as backup</li>
-          </ul>
-        </div>
-
-        <div class="info-box">
-          <p class="font-bold text-gray-800 mb-2">📖 Need Help?</p>
-          <p class="text-sm text-gray-700">Contact: <a href="mailto:exhassan15@gmail.com" class="text-blue-600 underline">exhassan15@gmail.com</a></p>
-          <p class="text-sm text-gray-700 mt-1">Phone: <a href="tel:+8108052136996" class="text-blue-600 underline">+81 080-5213-6996</a></p>
-        </div>
+        <p class="text-sm text-green-700">Orders will be sent to your LINE account instantly!</p>
       </div>
 
       <button id="closeSetupBtn" class="btn-primary w-full mt-6">
-        Got It! Start Taking Orders 🚀
+        Got It! 🚀
       </button>
     </div>
   </div>
 
-  <!-- Hero Section -->
   <section class="hero-section">
     <div class="hero-content">
-      <h1 class="hero-title" id="displayBusinessName">DESHI CUISINE</h1>
+      <h1 class="hero-title">DESHI CUISINE</h1>
       <p class="hero-subtitle">Traditional Flavors, Modern Twist</p>
       
       <div class="glass-card max-w-3xl mx-auto mt-8">
         <div class="grid md:grid-cols-2 gap-6 text-left">
           <div>
             <h3 class="text-xl font-semibold text-gray-800 mb-2">📅 Order Days</h3>
-            <p id="displayOrderDays" class="text-gray-600 text-lg">Wednesday & Saturday</p>
+            <p class="text-gray-600 text-lg">Wednesday & Saturday</p>
           </div>
           <div>
             <h3 class="text-xl font-semibold text-gray-800 mb-2">⏰ Order Deadline</h3>
@@ -418,40 +305,37 @@
     </div>
   </section>
 
-  <!-- Menu Section -->
   <section id="menu" class="relative py-20 px-4">
     <div class="max-w-7xl mx-auto">
       <h2 class="section-title">This Week's Special Menu</h2>
 
-      <!-- Wednesday Menu -->
       <div class="mb-20">
         <h3 class="text-4xl font-bold text-orange-700 mb-8 text-center">Wednesday Special</h3>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div class="menu-card">
-            <div id="wed-emoji-display" class="bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center text-6xl h-64">
+            <div class="bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center text-6xl h-64">
               🍛
             </div>
             <div class="p-6">
-              <h4 id="wed-name-display" class="text-2xl font-bold mb-3 text-gray-800">Chicken Biryani</h4>
-              <p id="wed-desc-display" class="text-gray-600 mb-6">Fragrant basmati rice with tender chicken, aromatic spices, saffron, and fried onions.</p>
-              <span id="wed-price-display" class="price-tag">¥1,299</span>
+              <h4 class="text-2xl font-bold mb-3 text-gray-800">Chicken Biryani</h4>
+              <p class="text-gray-600 mb-6">Fragrant basmati rice with tender chicken, aromatic spices, saffron, and fried onions.</p>
+              <span class="price-tag">¥1,299</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Saturday Menu -->
       <div>
         <h3 class="text-4xl font-bold text-orange-700 mb-8 text-center">Saturday Special</h3>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div class="menu-card">
-            <div id="sat-emoji-display" class="bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center text-6xl h-64">
+            <div class="bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center text-6xl h-64">
               🍲
             </div>
             <div class="p-6">
-              <h4 id="sat-name-display" class="text-2xl font-bold mb-3 text-gray-800">Vuna Khicuri with Duck</h4>
-              <p id="sat-desc-display" class="text-gray-600 mb-6">Traditional slow-cooked khichuri with caramelized onions and slow-cooked duck.</p>
-              <span id="sat-price-display" class="price-tag">¥1,999</span>
+              <h4 class="text-2xl font-bold mb-3 text-gray-800">Vuna Khicuri with Duck</h4>
+              <p class="text-gray-600 mb-6">Traditional slow-cooked khichuri with caramelized onions and slow-cooked duck.</p>
+              <span class="price-tag">¥1,999</span>
             </div>
           </div>
         </div>
@@ -459,7 +343,6 @@
     </div>
   </section>
 
-  <!-- Order Form -->
   <section id="order" class="relative py-20 px-4 bg-gray-50">
     <div class="max-w-4xl mx-auto">
       <h2 class="section-title">Place Your Order</h2>
@@ -469,9 +352,6 @@
           <p class="text-center font-bold text-gray-800 flex items-center justify-center gap-2">
             <svg class="w-6 h-6" fill="#06C755" viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
             ✅ LINE Bot Active! Orders sent directly to us
-          </p>
-          <p class="text-center text-sm text-gray-700 mt-1">
-            You'll receive instant confirmation via LINE
           </p>
         </div>
 
@@ -522,14 +402,13 @@
           </button>
           
           <p class="text-center text-sm text-gray-600 mt-4">
-            After submitting, you'll see confirmation. We'll contact you on LINE to confirm your order!
+            After submitting, you'll see confirmation. We'll contact you on LINE!
           </p>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
   <section class="relative py-20 px-4">
     <div class="max-w-4xl mx-auto">
       <div class="glass-card text-center">
@@ -537,97 +416,127 @@
         <div class="grid md:grid-cols-2 gap-8">
           <div>
             <p class="text-gray-600 font-semibold mb-2">📧 Email</p>
-            <a id="displayEmail" href="mailto:exhassan15@gmail.com" class="text-orange-600 text-lg">exhassan15@gmail.com</a>
+            <a href="mailto:exhassan15@gmail.com" class="text-orange-600 text-lg">exhassan15@gmail.com</a>
           </div>
           <div>
             <p class="text-gray-600 font-semibold mb-2">📱 Phone</p>
-            <p id="displayPhone" class="text-gray-800 text-lg">+8108052136996</p>
+            <p class="text-gray-800 text-lg">+8108052136996</p>
           </div>
-        </div>
-        <div class="mt-8">
-          <p class="text-gray-600 font-semibold mb-3">💬 Message us on LINE for fastest response:</p>
-          <button id="lineContactBtn" class="btn-line">
-            <svg class="w-6 h-6" fill="white" viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-            Contact on LINE
-          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-12">
     <div class="max-w-6xl mx-auto px-4 text-center">
-      <h3 class="text-4xl mb-4" style="font-family: 'Mrs Saint Delafield', cursive;" id="footerBusinessName">Deshi Cuisine</h3>
+      <h3 class="text-4xl mb-4" style="font-family: 'Mrs Saint Delafield', cursive;">Deshi Cuisine</h3>
       <p class="text-gray-300">Traditional Bangladeshi Home Cooking</p>
     </div>
   </footer>
 
   <script>
-    // ═══════════════════════════════════════════════════════════════════
-    // 📝 EASY EDIT DATA SECTION - CHANGE YOUR INFO HERE!
-    // ═══════════════════════════════════════════════════════════════════
-    
-    const ADMIN_PASSWORD = 'admin123';
-
-    const MENU_DATA = {
-      wednesday: {
-        name: 'Chicken Biryani',
-        desc: 'Fragrant basmati rice with tender chicken, aromatic spices, saffron, and fried onions.',
-        price: 1299,
-        emoji: '🍛'
-      },
-      saturday: {
-        name: 'Vuna Khicuri with Duck',
-        desc: 'Traditional slow-cooked khichuri with caramelized onions and slow-cooked duck.',
-        price: 1999,
-        emoji: '🍲'
-      }
-    };
-
-    const BUSINESS_SETTINGS = {
-      businessName: 'Deshi Cuisine',
-      phone: '+8108052136996',
-      email: 'exhassan15@gmail.com',
-      orderDays: 'Wednesday & Saturday'
-    };
-
-    // ═══════════════════════════════════════════════════════════════════
-    // 🔧 LINE BOT CONFIGURATION - ALREADY SETUP! ✅
-    // ═══════════════════════════════════════════════════════════════════
-    
+    // LINE Configuration
     const LINE_CONFIG = {
       channelAccessToken: 'ffOCGt8nvbdwqcQHCFCIb6XNQnvGGY/+k3BhGCkukUzYZ9ryfG7aiWEQ/k/Dn/ux2RawmIGPsFTC81y4ZfxV8ig7AYy9boCFkmsXuKThli5P3cAZUwwoGDM1VYoNx8kIEpm2XYumjeQ+YqCpH0C+CwdB04t89/1O/w1cDnyilFU=',
-      yourUserId: 'Udbf73a5ee7a12466f96c15e242dbc8d8',
-      lineOfficialLink: ''     // Optional: Your LINE official account link
+      yourUserId: 'Udbf73a5ee7a12466f96c15e242dbc8d8'
     };
 
-    // ═══════════════════════════════════════════════════════════════════
-    // END OF EASY EDIT SECTION
-    // ═══════════════════════════════════════════════════════════════════
-
-    // Check if LINE is configured
-    const isLineConfigured = LINE_CONFIG.channelAccessToken && LINE_CONFIG.yourUserId;
-
-    // Send order notification via LINE
+    // Send LINE notification
     async function sendLineNotification(order) {
-      if (!isLineConfigured) {
-        console.log('LINE not configured yet');
-        return false;
-      }
-
-      const message = `🍽️ **NEW ORDER - DESHI CUISINE** 🎉\n\n` +
-        `👤 **Customer:** ${order.customerName}\n` +
-        `📞 **Phone:** ${order.customerPhone}\n` +
-        `📧 **Email:** ${order.customerEmail}\n` +
-        `📅 **Delivery Day:** ${order.deliveryDay}\n` +
-        `📍 **Address:**\n${order.deliveryAddress}\n\n` +
-        `🛒 **Order Details:**\n${order.orderDetails}\n` +
-        (order.specialInstructions ? `\n💬 **Special Notes:**\n${order.specialInstructions}\n` : '') +
-        `\n⏰ **Order Time:** ${order.timestamp}\n` +
-        `━━━━━━━━━━━━━━━━━━━━\n` +
-        `📱 **Business:** ${BUSINESS_SETTINGS.businessName}\n` +
-        `☎️ **Contact:** ${BUSINESS_SETTINGS.phone}`;
+      const message = `🍽️ NEW ORDER - DESHI CUISINE 🎉\n\n` +
+        `👤 Customer: ${order.customerName}\n` +
+        `📞 Phone: ${order.customerPhone}\n` +
+        `📧 Email: ${order.customerEmail}\n` +
+        `📅 Delivery Day: ${order.deliveryDay}\n` +
+        `📍 Address:\n${order.deliveryAddress}\n\n` +
+        `🛒 Order Details:\n${order.orderDetails}\n` +
+        (order.specialInstructions ? `\n💬 Special Notes:\n${order.specialInstructions}\n` : '') +
+        `\n⏰ Order Time: ${order.timestamp}`;
 
       try {
-        const response = await fetch('
+        const response = await fetch('https://api.line.me/v2/bot/message/push', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${LINE_CONFIG.channelAccessToken}`
+          },
+          body: JSON.stringify({
+            to: LINE_CONFIG.yourUserId,
+            messages: [{
+              type: 'text',
+              text: message
+            }]
+          })
+        });
+
+        if (!response.ok) {
+          const err = await response.text();
+          console.error('LINE API Error:', err);
+          throw new Error(`LINE API failed: ${response.status}`);
+        }
+
+        return true;
+      } catch (error) {
+        console.error('Failed to send LINE notification:', error);
+        return false;
+      }
+    }
+
+    // Form submission
+    const form = document.getElementById('orderForm');
+    const btn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      btn.disabled = true;
+      btn.textContent = '⏳ Sending to LINE...';
+
+      const formData = new FormData(form);
+      const order = {
+        customerName: formData.get('customerName'),
+        customerEmail: formData.get('customerEmail'),
+        customerPhone: formData.get('customerPhone'),
+        deliveryDay: formData.get('deliveryDay'),
+        deliveryAddress: formData.get('deliveryAddress'),
+        orderDetails: formData.get('orderDetails'),
+        specialInstructions: formData.get('specialInstructions'),
+        timestamp: new Date().toLocaleString('en-US', { 
+          timeZone: 'Asia/Tokyo',
+          dateStyle: 'medium',
+          timeStyle: 'short'
+        })
+      };
+
+      const success = await sendLineNotification(order);
+
+      if (success) {
+        alert('✅ Order sent successfully via LINE!\n\nWe will contact you shortly to confirm your order.');
+        form.reset();
+        btn.textContent = '✅ Order Sent!';
+        setTimeout(() => {
+          btn.textContent = '📝 Submit Order via LINE';
+          btn.disabled = false;
+        }, 3000);
+      } else {
+        alert('❌ Failed to send order via LINE.\n\nPlease contact us directly:\n📞 +8108052136996\n📧 exhassan15@gmail.com');
+        btn.textContent = '❌ Failed - Try Again';
+        btn.disabled = false;
+      }
+    });
+
+    // Modal controls
+    document.getElementById('adminBtn').addEventListener('click', () => {
+      document.getElementById('setupModal').classList.add('active');
+    });
+
+    document.getElementById('closeSetup').addEventListener('click', () => {
+      document.getElementById('setupModal').classList.remove('active');
+    });
+
+    document.getElementById('closeSetupBtn').addEventListener('click', () => {
+      document.getElementById('setupModal').classList.remove('active');
+    });
+  </script>
+</body>
+</html>
