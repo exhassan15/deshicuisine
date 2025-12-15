@@ -148,6 +148,12 @@
       box-shadow: 0 6px 20px rgba(234, 88, 12, 0.6);
     }
 
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .btn-line {
       background: #06C755;
       color: white;
@@ -241,21 +247,11 @@
       background: white;
       border-radius: 24px;
       padding: 2.5rem;
-      max-width: 900px;
+      max-width: 600px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    }
-
-    .error-box {
-      background: #fee;
-      border: 2px solid #f88;
-      border-radius: 12px;
-      padding: 1rem;
-      margin: 1rem 0;
-      font-family: 'Courier New', monospace;
-      font-size: 0.85rem;
     }
 
     @media (max-width: 768px) {
@@ -270,61 +266,31 @@
 </head>
 <body>
 
-  <button id="adminBtn" class="admin-btn" title="Test LINE Bot">🔧</button>
+  <button id="adminBtn" class="admin-btn" title="Test LINE Bot">🧪</button>
 
   <div id="setupModal" class="modal">
     <div class="modal-content">
       <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-bold text-gray-800">🔧 LINE Bot Diagnostic</h2>
+        <h2 class="text-2xl font-bold text-gray-800">🧪 Test LINE Bot</h2>
         <button id="closeSetup" class="text-4xl text-gray-600 hover:text-gray-800 transition">&times;</button>
       </div>
 
       <div id="diagnosticResult" class="mb-4">
-        <div style="background: #fef3c7; border: 2px solid #fbbf24; border-radius: 12px; padding: 1.5rem;">
-          <p class="font-bold text-gray-800 mb-3">🔍 CORS Issue - File Protocol Detected</p>
-          <p class="text-sm text-gray-700 mb-3">Your HTML file is opened directly (file://), which blocks LINE API calls.</p>
-          
-          <div class="text-sm space-y-3 mt-4">
-            <div style="background: white; padding: 1rem; border-radius: 8px;">
-              <p class="font-bold mb-2">✅ EASIEST FIX - Use Python:</p>
-              <div style="background: #1e293b; color: #e2e8f0; padding: 0.75rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem;">
-                cd /path/to/your/folder<br>
-                python -m http.server 8000
-              </div>
-              <p class="text-xs mt-2 text-gray-600">Then open: http://localhost:8000</p>
-            </div>
-
-            <div style="background: white; padding: 1rem; border-radius: 8px;">
-              <p class="font-bold mb-2">✅ OR Upload to Netlify (Free):</p>
-              <ol class="text-xs space-y-1 ml-4 list-decimal">
-                <li>Go to <a href="https://app.netlify.com/drop" target="_blank" class="text-blue-600 underline">netlify.com/drop</a></li>
-                <li>Drag & drop your HTML file</li>
-                <li>Get instant public URL</li>
-                <li>LINE Bot works immediately!</li>
-              </ol>
-            </div>
-
-            <div style="background: white; padding: 1rem; border-radius: 8px;">
-              <p class="font-bold mb-2">✅ OR Use VS Code Live Server:</p>
-              <ol class="text-xs space-y-1 ml-4 list-decimal">
-                <li>Install "Live Server" extension in VS Code</li>
-                <li>Right-click HTML file → "Open with Live Server"</li>
-                <li>It opens at http://localhost:5500</li>
-              </ol>
-            </div>
-          </div>
-
-          <p class="text-xs text-gray-600 mt-4 italic">Note: The CORS proxy in test mode may not work reliably. Use a proper web server for production.</p>
-        </div>
+        <p class="text-center text-gray-600">Click the button below to send a test message to your LINE</p>
       </div>
 
       <button id="testLineBtn" class="btn-primary w-full mb-3">
-        🧪 Test LINE Connection
+        🧪 Send Test Message
       </button>
 
-      <button id="closeSetupBtn" class="btn-line w-full">
-        Close
-      </button>
+      <div style="background: #fef3c7; border: 2px solid #fbbf24; border-radius: 12px; padding: 1rem; margin-top: 1rem;">
+        <p class="text-sm font-bold text-gray-800 mb-2">📝 Important Notes:</p>
+        <ul class="text-xs text-gray-700 space-y-1 ml-4 list-disc">
+          <li>Make sure you've added the bot as a friend in LINE</li>
+          <li>Check your LINE app after clicking test</li>
+          <li>If you see CORS error, serve this via a web server (not file://)</li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -396,15 +362,13 @@
       <h2 class="section-title">Place Your Order</h2>
 
       <div class="glass-card">
-        <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-orange-400 rounded-lg p-4 mb-6">
-          <p class="text-center font-bold text-gray-800">
-            ⚠️ CORS Issue Detected
+        <div class="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-500 rounded-lg p-4 mb-6">
+          <p class="text-center font-bold text-gray-800 flex items-center justify-center gap-2">
+            <svg class="w-6 h-6" fill="#06C755" viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+            ✅ LINE Bot Active! Orders sent directly via LINE
           </p>
           <p class="text-center text-sm text-gray-700 mt-1">
-            Open this file using a web server (not file://) for LINE to work
-          </p>
-          <p class="text-center text-xs text-gray-600 mt-2">
-            Instructions in the diagnostic panel (🔧 button)
+            You'll receive instant confirmation via LINE
           </p>
         </div>
 
@@ -451,11 +415,11 @@
           </div>
 
           <button type="submit" id="submitBtn" class="btn-primary w-full">
-            📧 Submit Order (Email Backup)
+            📝 Submit Order via LINE
           </button>
           
           <p class="text-center text-sm text-gray-600 mt-4">
-            We'll receive your order and contact you shortly!
+            After submitting, you'll see confirmation and we'll contact you via LINE!
           </p>
         </form>
       </div>
@@ -488,25 +452,74 @@
   </footer>
 
   <script>
-    // LINE Configuration
+    // ═══════════════════════════════════════════════════════════════════
+    // 🔧 LINE BOT CONFIGURATION - YOUR UPDATED CREDENTIALS
+    // ═══════════════════════════════════════════════════════════════════
+    
     const LINE_CONFIG = {
-      channelAccessToken: 'ffOCGt8nvbdwqcQHCFCIb6XNQnvGGY/+k3BhGCkukUzYZ9ryfG7aiWEQ/k/Dn/ux2RawmIGPsFTC81y4ZfxV8ig7AYy9boCFkmsXuKThli5P3cAZUwwoGDM1VYoNx8kIEpm2XYumjeQ+YqCpH0C+CwdB04t89/1O/w1cDnyilFU=',
+      channelAccessToken: 'ykEtZUwSNwUG0bK7fnvbMjdlTmR9L9QNbILJO1sa+uPLxx7wrF4iCzUItt2TsDd62RawmIGPsFTC81y4ZfxV8ig7AYy9boCFkmsXuKThli7QrPjwvIdXylJjZ+RG6jYZDaefgq7W6nHSjaYJDCgv6gdB04t89/1O/w1cDnyilFU=',
       yourUserId: 'Udbf73a5ee7a12466f96c15e242dbc8d8'
     };
 
-    // Test LINE connection with detailed diagnostics
-    async function testLineConnection() {
-      const resultDiv = document.getElementById('diagnosticResult');
-      resultDiv.innerHTML = '<p class="text-center">🔄 Testing LINE connection...</p>';
-
-      const testMessage = `🧪 TEST MESSAGE\n\nThis is a test from Deshi Cuisine website.\nTime: ${new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' })}`;
+    // Send LINE notification
+    async function sendLineNotification(order) {
+      const message = `🍽️ NEW ORDER - DESHI CUISINE 🎉\n\n` +
+        `👤 Customer: ${order.customerName}\n` +
+        `📞 Phone: ${order.customerPhone}\n` +
+        `📧 Email: ${order.customerEmail}\n` +
+        `📅 Delivery Day: ${order.deliveryDay}\n` +
+        `📍 Address:\n${order.deliveryAddress}\n\n` +
+        `🛒 Order Details:\n${order.orderDetails}\n` +
+        (order.specialInstructions ? `\n💬 Special Notes:\n${order.specialInstructions}\n` : '') +
+        `\n⏰ Order Time: ${order.timestamp}\n` +
+        `━━━━━━━━━━━━━━━━━━━━\n` +
+        `📱 Contact: +8108052136996`;
 
       try {
-        console.log('Sending test to LINE API...');
-        console.log('User ID:', LINE_CONFIG.yourUserId);
-        console.log('Token length:', LINE_CONFIG.channelAccessToken.length);
+        // Use CORS proxy for compatibility
+        const corsProxy = 'https://corsproxy.io/?';
+        const lineApiUrl = 'https://api.line.me/v2/bot/message/push';
+        
+        const response = await fetch(corsProxy + encodeURIComponent(lineApiUrl), {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${LINE_CONFIG.channelAccessToken}`
+          },
+          body: JSON.stringify({
+            to: LINE_CONFIG.yourUserId,
+            messages: [{
+              type: 'text',
+              text: message
+            }]
+          })
+        });
 
-        // Use CORS proxy for testing from local files
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error('LINE API Error:', response.status, errorText);
+          throw new Error(`LINE API failed: ${response.status}`);
+        }
+
+        return true;
+      } catch (error) {
+        console.error('Failed to send LINE notification:', error);
+        return false;
+      }
+    }
+
+    // Test LINE connection
+    async function testLineConnection() {
+      const resultDiv = document.getElementById('diagnosticResult');
+      const btn = document.getElementById('testLineBtn');
+      
+      btn.disabled = true;
+      btn.textContent = '⏳ Sending test message...';
+      resultDiv.innerHTML = '<p class="text-center text-gray-600">⏳ Sending test message to your LINE...</p>';
+
+      const testMessage = `🧪 TEST MESSAGE\n\nYour Deshi Cuisine LINE Bot is working!\n\nTime: ${new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' })}\n\n✅ You're all set to receive orders!`;
+
+      try {
         const corsProxy = 'https://corsproxy.io/?';
         const lineApiUrl = 'https://api.line.me/v2/bot/message/push';
         
@@ -525,78 +538,66 @@
           })
         });
 
-        console.log('Response status:', response.status);
-        const responseText = await response.text();
-        console.log('Response body:', responseText);
-
         if (response.ok) {
           resultDiv.innerHTML = `
             <div style="background: #d1fae5; border: 2px solid #10b981; border-radius: 12px; padding: 1.5rem;">
-              <p class="font-bold text-green-800 mb-2">✅ LINE Bot is Working!</p>
-              <p class="text-sm text-green-700">Check your LINE app for the test message.</p>
-              <p class="text-xs text-green-600 mt-2">Status: ${response.status} - Success</p>
+              <p class="font-bold text-green-800 mb-2">✅ SUCCESS! LINE Bot is Working!</p>
+              <p class="text-sm text-green-700">Check your LINE app - you should see the test message!</p>
+              <p class="text-xs text-green-600 mt-3">Your website is ready to receive orders via LINE 🎉</p>
             </div>
           `;
+          btn.textContent = '✅ Test Successful!';
+          setTimeout(() => {
+            btn.textContent = '🧪 Send Test Message';
+            btn.disabled = false;
+          }, 3000);
         } else {
-          let errorDetail = '';
+          const errorText = await response.text();
+          let errorMsg = errorText;
           try {
-            const errorData = JSON.parse(responseText);
-            errorDetail = errorData.message || responseText;
-          } catch {
-            errorDetail = responseText;
-          }
+            const errorData = JSON.parse(errorText);
+            errorMsg = errorData.message || errorText;
+          } catch (e) {}
 
           resultDiv.innerHTML = `
-            <div class="error-box">
-              <p class="font-bold text-red-800 mb-2">❌ LINE API Error</p>
-              <p class="text-sm text-red-700 mb-2">Status: ${response.status}</p>
-              <p class="text-xs text-red-600">Error: ${errorDetail}</p>
-              <hr class="my-3 border-red-300">
-              <p class="text-sm font-bold mt-3">Common Issues:</p>
-              <ul class="text-xs space-y-1 ml-4 list-disc">
-                <li><strong>401 Unauthorized:</strong> Invalid Channel Access Token</li>
-                <li><strong>400 Bad Request:</strong> Invalid User ID format</li>
-                <li><strong>403 Forbidden:</strong> Bot not added as friend, or messaging API not enabled</li>
-              </ul>
-              <hr class="my-3 border-red-300">
-              <p class="text-sm font-bold">Fix Steps:</p>
-              <ol class="text-xs space-y-1 ml-4 list-decimal">
-                <li>Go to LINE Developers Console</li>
-                <li>Check Messaging API settings</li>
-                <li>Verify Channel Access Token is valid</li>
-                <li>Make sure you added the bot as a friend</li>
-                <li>Enable "Use webhooks" is NOT required for push messages</li>
-              </ol>
+            <div style="background: #fee; border: 2px solid #f88; border-radius: 12px; padding: 1rem;">
+              <p class="font-bold text-red-800 mb-2">❌ Error: ${response.status}</p>
+              <p class="text-sm text-red-700 mb-3">${errorMsg}</p>
+              <div class="text-xs text-gray-700 mt-3">
+                <p class="font-bold mb-1">Common fixes:</p>
+                <ul class="ml-4 list-disc space-y-1">
+                  <li>Make sure you added the bot as a friend in LINE</li>
+                  <li>Verify your Channel Access Token is correct</li>
+                  <li>Check if Messaging API is enabled in LINE Developers Console</li>
+                </ul>
+              </div>
             </div>
           `;
+          btn.textContent = '🧪 Send Test Message';
+          btn.disabled = false;
         }
       } catch (error) {
-        console.error('Network error:', error);
         resultDiv.innerHTML = `
-          <div class="error-box">
-            <p class="font-bold text-red-800 mb-2">❌ Connection Failed</p>
-            <p class="text-sm text-red-700">${error.message}</p>
-            <hr class="my-3 border-red-300">
-            <p class="text-xs">This usually means:</p>
-            <ul class="text-xs space-y-1 ml-4 list-disc mt-2">
-              <li>Network connection issue</li>
-              <li>CORS policy blocking (try from a server, not file://)</li>
-              <li>LINE API is temporarily down</li>
-            </ul>
+          <div style="background: #fef3c7; border: 2px solid #fbbf24; border-radius: 12px; padding: 1rem;">
+            <p class="font-bold text-gray-800 mb-2">⚠️ Connection Issue</p>
+            <p class="text-sm text-gray-700 mb-3">${error.message}</p>
+            <p class="text-xs text-gray-600">This might be a CORS issue. Make sure you're serving this file via a web server (not file://)</p>
           </div>
         `;
+        btn.textContent = '🧪 Send Test Message';
+        btn.disabled = false;
       }
     }
 
-    // Form submission (email backup for now)
+    // Form submission
     const form = document.getElementById('orderForm');
-    const btn = document.getElementById('submitBtn');
+    const submitBtn = document.getElementById('submitBtn');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      btn.disabled = true;
-      btn.textContent = '⏳ Processing...';
+      submitBtn.disabled = true;
+      submitBtn.textContent = '⏳ Sending to LINE...';
 
       const formData = new FormData(form);
       const order = {
@@ -614,49 +615,7 @@
         })
       };
 
-      // Create email body
-      const emailBody = `NEW ORDER - DESHI CUISINE
+      const success = await sendLineNotification(order);
 
-Customer: ${order.customerName}
-Phone: ${order.customerPhone}
-Email: ${order.customerEmail}
-Delivery Day: ${order.deliveryDay}
-Address: ${order.deliveryAddress}
-
-Order Details:
-${order.orderDetails}
-
-Special Instructions:
-${order.specialInstructions || 'None'}
-
-Order Time: ${order.timestamp}`;
-
-      // Open email client as backup
-      const mailtoLink = `mailto:exhassan15@gmail.com?subject=New Order from ${order.customerName}&body=${encodeURIComponent(emailBody)}`;
-      window.location.href = mailtoLink;
-
-      alert(`✅ Order form sent!\n\nYour email client should open. Please send the email to complete your order.\n\nWe will contact you at:\n📞 ${order.customerPhone}\n📧 ${order.customerEmail}`);
-      
-      form.reset();
-      btn.textContent = '📧 Submit Order (Email Backup)';
-      btn.disabled = false;
-    });
-
-    // Modal controls
-    document.getElementById('adminBtn').addEventListener('click', () => {
-      document.getElementById('setupModal').classList.add('active');
-      document.getElementById('diagnosticResult').innerHTML = '<p class="text-center text-gray-600">Click the button below to test your LINE Bot</p>';
-    });
-
-    document.getElementById('testLineBtn').addEventListener('click', testLineConnection);
-
-    document.getElementById('closeSetup').addEventListener('click', () => {
-      document.getElementById('setupModal').classList.remove('active');
-    });
-
-    document.getElementById('closeSetupBtn').addEventListener('click', () => {
-      document.getElementById('setupModal').classList.remove('active');
-    });
-  </script>
-</body>
-</html>
+      if (success) {
+        alert('✅ Order sent successfully via LINE!\n\nWe
