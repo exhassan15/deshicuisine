@@ -219,7 +219,7 @@
       background: white;
       border-radius: 24px;
       padding: 2.5rem;
-      max-width: 900px;
+      max-width: 800px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
@@ -249,30 +249,12 @@
       box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);
     }
 
-    .tab-btn {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      background: #f3f4f6;
-      color: #6b7280;
-      cursor: pointer;
-      font-weight: 600;
-      border-radius: 8px 8px 0 0;
-      transition: all 0.3s ease;
-      margin-right: 0.25rem;
-    }
-
-    .tab-btn.active {
-      background: #ea580c;
-      color: white;
-    }
-
-    .tab-content {
-      display: none;
-      padding-top: 1.5rem;
-    }
-
-    .tab-content.active {
-      display: block;
+    .info-box {
+      background: #fef3c7;
+      border: 2px solid #fbbf24;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
     }
 
     @media (max-width: 768px) {
@@ -282,17 +264,13 @@
         bottom: 1rem;
         right: 1rem;
       }
-      .tab-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.875rem;
-      }
     }
   </style>
 </head>
 <body>
 
   <!-- Admin Button -->
-  <button id="adminBtn" class="admin-btn" title="Admin Login">⚙️</button>
+  <button id="adminBtn" class="admin-btn" title="Admin Panel">⚙️</button>
 
   <!-- Login Modal -->
   <div id="loginModal" class="modal">
@@ -301,11 +279,9 @@
       <div class="space-y-4">
         <div>
           <label class="block text-sm font-semibold mb-2 text-gray-700">Password</label>
-          <input type="password" id="adminPassword" class="form-input" placeholder="Enter admin password">
+          <input type="password" id="adminPassword" class="form-input" placeholder="Enter password">
         </div>
-        <button id="loginBtn" class="btn-primary w-full">
-          Login
-        </button>
+        <button id="loginBtn" class="btn-primary w-full">Login</button>
         <button id="cancelLogin" class="w-full bg-gray-300 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-400 transition font-semibold">
           Cancel
         </button>
@@ -314,142 +290,34 @@
     </div>
   </div>
 
-  <!-- Admin Panel Modal -->
+  <!-- Admin Panel -->
   <div id="adminModal" class="modal">
     <div class="modal-content">
       <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-bold text-gray-800">Admin Panel</h2>
+        <h2 class="text-3xl font-bold text-gray-800">📦 Orders Panel</h2>
         <button id="closeModal" class="text-4xl text-gray-600 hover:text-gray-800 transition">&times;</button>
       </div>
 
-      <!-- Tabs -->
-      <div class="flex gap-1 mb-4 border-b-2 border-gray-200">
-        <button class="tab-btn active" onclick="switchTab('orders')">📦 Orders</button>
-        <button class="tab-btn" onclick="switchTab('menu')">🍽️ Menu</button>
-        <button class="tab-btn" onclick="switchTab('settings')">⚙️ Settings</button>
+      <div class="info-box">
+        <p class="text-sm font-semibold text-gray-800">💡 <strong>To change prices, menu, or business info:</strong></p>
+        <p class="text-sm text-gray-700 mt-2">Go to GitHub → Edit index.html → Find the DATA SECTION (line ~290) → Change values → Commit!</p>
+        <p class="text-sm text-gray-600 mt-1">Changes will be live in 1 minute and visible on ALL devices! ✅</p>
       </div>
 
-      <!-- Orders Tab -->
-      <div id="orders-tab" class="tab-content active">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-xl font-bold text-gray-700">Customer Orders (<span id="orderCount">0</span>)</h3>
-          <button id="refreshOrders" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm">
-            🔄 Refresh
-          </button>
-        </div>
-        <div id="ordersList">
-          <p class="text-gray-500 text-center py-8">Loading orders...</p>
-        </div>
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-gray-700">Customer Orders (<span id="orderCount">0</span>)</h3>
+        <button id="refreshOrders" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm">
+          🔄 Refresh
+        </button>
       </div>
 
-      <!-- Menu Tab -->
-      <div id="menu-tab" class="tab-content">
-        <h3 class="text-2xl font-bold mb-6 text-gray-800">Edit Menu Items</h3>
-        
-        <div class="space-y-6">
-          <!-- Wednesday Item -->
-          <div class="border-2 border-orange-200 rounded-lg p-4 bg-orange-50">
-            <h4 class="font-bold text-lg mb-3 text-orange-700">🗓️ Wednesday Special</h4>
-            <div class="grid md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-semibold mb-1 text-gray-700">Dish Name</label>
-                <input id="wed-name" class="form-input" value="Chicken Biryani">
-              </div>
-              <div>
-                <label class="block text-sm font-semibold mb-1 text-gray-700">Price (¥)</label>
-                <input id="wed-price" type="number" class="form-input" value="1299">
-              </div>
-              <div class="md:col-span-2">
-                <label class="block text-sm font-semibold mb-1 text-gray-700">Description</label>
-                <textarea id="wed-desc" class="form-input" rows="2">Fragrant basmati rice with tender chicken, aromatic spices, saffron, and fried onions.</textarea>
-              </div>
-              <div>
-                <label class="block text-sm font-semibold mb-1 text-gray-700">Emoji</label>
-                <input id="wed-emoji" class="form-input" value="🍛" maxlength="2">
-              </div>
-            </div>
-          </div>
-
-          <!-- Saturday Item -->
-          <div class="border-2 border-orange-200 rounded-lg p-4 bg-orange-50">
-            <h4 class="font-bold text-lg mb-3 text-orange-700">🗓️ Saturday Special</h4>
-            <div class="grid md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-semibold mb-1 text-gray-700">Dish Name</label>
-                <input id="sat-name" class="form-input" value="Vuna Khicuri with Duck">
-              </div>
-              <div>
-                <label class="block text-sm font-semibold mb-1 text-gray-700">Price (¥)</label>
-                <input id="sat-price" type="number" class="form-input" value="1999">
-              </div>
-              <div class="md:col-span-2">
-                <label class="block text-sm font-semibold mb-1 text-gray-700">Description</label>
-                <textarea id="sat-desc" class="form-input" rows="2">Traditional slow-cooked khichuri with caramelized onions and slow-cooked duck.</textarea>
-              </div>
-              <div>
-                <label class="block text-sm font-semibold mb-1 text-gray-700">Emoji</label>
-                <input id="sat-emoji" class="form-input" value="🍲" maxlength="2">
-              </div>
-            </div>
-          </div>
-
-          <button id="saveMenu" class="btn-primary w-full text-lg">
-            💾 Save Menu Changes
-          </button>
-        </div>
+      <div id="ordersList">
+        <p class="text-gray-500 text-center py-8">No orders yet</p>
       </div>
 
-      <!-- Settings Tab -->
-      <div id="settings-tab" class="tab-content">
-        <h3 class="text-2xl font-bold mb-6 text-gray-800">Business Settings</h3>
-        
-        <div class="space-y-4">
-          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
-            <div>
-              <label class="block text-sm font-semibold mb-2 text-gray-700">Business Name</label>
-              <input id="businessName" class="form-input" value="Deshi Cuisine">
-            </div>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-semibold mb-2 text-gray-700">📞 Phone</label>
-              <input id="businessPhone" class="form-input" value="+8108052136996">
-            </div>
-            <div>
-              <label class="block text-sm font-semibold mb-2 text-gray-700">📧 Email</label>
-              <input id="businessEmail" class="form-input" value="exhassan15@gmail.com">
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-sm font-semibold mb-2 text-gray-700">📅 Order Days</label>
-            <input id="orderDays" class="form-input" value="Wednesday & Saturday">
-          </div>
-
-          <div class="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-4">
-            <h4 class="font-bold mb-2 text-gray-700">🔐 Change Admin Password</h4>
-            <div class="space-y-3">
-              <div>
-                <label class="block text-sm font-semibold mb-1 text-gray-700">New Password</label>
-                <input type="password" id="newPassword" class="form-input" placeholder="Enter new password">
-              </div>
-              <div>
-                <label class="block text-sm font-semibold mb-1 text-gray-700">Confirm Password</label>
-                <input type="password" id="confirmPassword" class="form-input" placeholder="Confirm new password">
-              </div>
-              <button id="changePassword" class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition font-semibold w-full">
-                Update Password
-              </button>
-            </div>
-          </div>
-          
-          <button id="saveSettings" class="btn-primary w-full text-lg">
-            💾 Save All Settings
-          </button>
-        </div>
-      </div>
-
+      <button id="clearAllOrders" class="w-full mt-4 bg-red-600 text-white px-4 py-3 rounded-lg hover:bg-red-700 transition font-semibold">
+        🗑️ Clear All Orders
+      </button>
     </div>
   </div>
 
@@ -528,7 +396,7 @@
       <div class="glass-card">
         <div class="bg-green-50 border-2 border-green-500 rounded-lg p-4 mb-6">
           <p class="text-center font-bold text-green-800">
-            ✅ Your order will be saved and visible to admin!
+            ✅ Your order will be saved!
           </p>
         </div>
 
@@ -610,144 +478,57 @@
   </footer>
 
   <script>
-    // === CONFIGURATION ===
-    const JSONBIN_API_KEY = '$2a$10$ECwXSu3u1EF492COK8cLRuMcA/luRc60t9J1Ra.k8ODjnS9tT3imG';
-    const JSONBIN_BIN_ID = '693f88c3ae596e708f9a9f34';
-    let ADMIN_PASSWORD = 'admin123'; // Default password
+    // ═══════════════════════════════════════════════════════════════════
+    // 📝 EASY EDIT DATA SECTION - CHANGE YOUR INFO HERE!
+    // ═══════════════════════════════════════════════════════════════════
+    // To edit: Go to GitHub → Click index.html → Click ✏️ Edit → Change values below → Commit
+    // Changes will be live in 1 minute on ALL devices!
     
-    let isLoggedIn = false;
-    let orders = [];
-    let menuData = {
+    const ADMIN_PASSWORD = 'admin123'; // Change this to your secure password
+
+    const MENU_DATA = {
       wednesday: {
         name: 'Chicken Biryani',
         desc: 'Fragrant basmati rice with tender chicken, aromatic spices, saffron, and fried onions.',
-        price: 1299,
+        price: 1299,  // ← CHANGE PRICE HERE (just the number, no ¥ symbol)
         emoji: '🍛'
       },
       saturday: {
         name: 'Vuna Khicuri with Duck',
         desc: 'Traditional slow-cooked khichuri with caramelized onions and slow-cooked duck.',
-        price: 1999,
+        price: 1999,  // ← CHANGE PRICE HERE
         emoji: '🍲'
       }
     };
-    
-    let settings = {
-      businessName: 'Deshi Cuisine',
-      phone: '+8108052136996',
-      email: 'exhassan15@gmail.com',
+
+    const BUSINESS_SETTINGS = {
+      businessName: 'Deshi Cuisine',  // ← CHANGE BUSINESS NAME HERE
+      phone: '+8108052136996',        // ← CHANGE PHONE HERE
+      email: 'exhassan15@gmail.com',  // ← CHANGE EMAIL HERE
       orderDays: 'Wednesday & Saturday'
     };
 
-    // === TAB SWITCHING ===
-    function switchTab(tabName) {
-      // Remove active class from all tabs and contents
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-      
-      // Add active class to selected tab
-      event.target.classList.add('active');
-      document.getElementById(tabName + '-tab').classList.add('active');
-      
-      console.log('Switched to tab:', tabName); // Debug
-    }
+    // ═══════════════════════════════════════════════════════════════════
+    // END OF EASY EDIT SECTION
+    // (Don't edit below this line unless you know what you're doing!)
+    // ═══════════════════════════════════════════════════════════════════
 
-    // Make switchTab available globally
-    window.switchTab = switchTab;
+    let isLoggedIn = false;
+    let orders = [];
 
-    // === LOAD DATA ===
-    async function loadData() {
-      try {
-        const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
-          headers: { 'X-Access-Key': JSONBIN_API_KEY }
-        });
-        
-        if (response.ok) {
-          const data = await response.json();
-          if (data.record.menuData) menuData = data.record.menuData;
-          if (data.record.settings) settings = data.record.settings;
-          if (data.record.adminPassword) ADMIN_PASSWORD = data.record.adminPassword;
-        }
-      } catch (error) {
-        console.log('Loading from localStorage fallback');
-        const savedMenu = localStorage.getItem('menuData');
-        const savedSettings = localStorage.getItem('settings');
-        const savedPassword = localStorage.getItem('adminPassword');
-        
-        if (savedMenu) menuData = JSON.parse(savedMenu);
-        if (savedSettings) settings = JSON.parse(savedSettings);
-        if (savedPassword) ADMIN_PASSWORD = savedPassword;
-      }
-      
-      updateDisplay();
-      loadOrders();
-    }
-
-    // === UPDATE DISPLAY ===
-    function updateDisplay() {
-      // Menu display
-      document.getElementById('wed-name-display').textContent = menuData.wednesday.name;
-      document.getElementById('wed-desc-display').textContent = menuData.wednesday.desc;
-      document.getElementById('wed-price-display').textContent = '¥' + menuData.wednesday.price.toLocaleString();
-      document.getElementById('wed-emoji-display').textContent = menuData.wednesday.emoji;
-      
-      document.getElementById('sat-name-display').textContent = menuData.saturday.name;
-      document.getElementById('sat-desc-display').textContent = menuData.saturday.desc;
-      document.getElementById('sat-price-display').textContent = '¥' + menuData.saturday.price.toLocaleString();
-      document.getElementById('sat-emoji-display').textContent = menuData.saturday.emoji;
-      
-      // Menu edit fields
-      document.getElementById('wed-name').value = menuData.wednesday.name;
-      document.getElementById('wed-desc').value = menuData.wednesday.desc;
-      document.getElementById('wed-price').value = menuData.wednesday.price;
-      document.getElementById('wed-emoji').value = menuData.wednesday.emoji;
-      
-      document.getElementById('sat-name').value = menuData.saturday.name;
-      document.getElementById('sat-desc').value = menuData.saturday.desc;
-      document.getElementById('sat-price').value = menuData.saturday.price;
-      document.getElementById('sat-emoji').value = menuData.saturday.emoji;
-      
-      // Settings display
-      document.getElementById('displayBusinessName').textContent = settings.businessName.toUpperCase();
-      document.getElementById('footerBusinessName').textContent = settings.businessName;
-      document.getElementById('displayOrderDays').textContent = settings.orderDays;
-      document.getElementById('displayEmail').textContent = settings.email;
-      document.getElementById('displayEmail').href = 'mailto:' + settings.email;
-      document.getElementById('displayPhone').textContent = settings.phone;
-      
-      // Settings edit fields
-      document.getElementById('businessName').value = settings.businessName;
-      document.getElementById('businessPhone').value = settings.phone;
-      document.getElementById('businessEmail').value = settings.email;
-      document.getElementById('orderDays').value = settings.orderDays;
-    }
-
-    // === ORDERS MANAGEMENT ===
-    async function loadOrders() {
-      try {
-        const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
-          headers: { 'X-Access-Key': JSONBIN_API_KEY }
-        });
-        
-        if (response.ok) {
-          const data = await response.json();
-          orders = data.record.orders || [];
-          if (data.record.menuData) menuData = data.record.menuData;
-          if (data.record.settings) settings = data.record.settings;
-          if (data.record.adminPassword) ADMIN_PASSWORD = data.record.adminPassword;
-          updateDisplay();
-        } else {
-          const localOrders = localStorage.getItem('orders');
-          orders = localOrders ? JSON.parse(localOrders) : [];
-        }
-      } catch (error) {
-        const localOrders = localStorage.getItem('orders');
-        orders = localOrders ? JSON.parse(localOrders) : [];
-      }
-      
+    // Load orders from localStorage
+    function loadOrders() {
+      const saved = localStorage.getItem('deshi_orders');
+      orders = saved ? JSON.parse(saved) : [];
       displayOrders();
     }
 
+    // Save orders to localStorage
+    function saveOrders() {
+      localStorage.setItem('deshi_orders', JSON.stringify(orders));
+    }
+
+    // Display orders in admin panel
     function displayOrders() {
       const ordersList = document.getElementById('ordersList');
       const orderCount = document.getElementById('orderCount');
@@ -774,90 +555,55 @@
             ${order.specialInstructions ? `<p class="text-gray-700"><strong>💬 Notes:</strong> ${order.specialInstructions}</p>` : ''}
             <p class="text-gray-400 text-xs mt-2">🕒 ${order.timestamp}</p>
           </div>
-          <button onclick="deleteOrder(${index})" class="mt-3 w-full bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition font-semibold">
-            🗑️ Delete Order
+          <button onclick="deleteOrder(${index})" class="mt-3 w-full bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition font-semibold text-sm">
+            🗑️ Delete This Order
           </button>
         </div>
       `).join('');
     }
 
-    async function saveOrder(order) {
-      orders.unshift(order);
-      
-      try {
-        await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Access-Key': JSONBIN_API_KEY
-          },
-          body: JSON.stringify({ 
-            orders: orders,
-            menuData: menuData,
-            settings: settings,
-            adminPassword: ADMIN_PASSWORD
-          })
-        });
-      } catch (error) {
-        console.log('Cloud save failed, using localStorage');
-      }
-      
-      localStorage.setItem('orders', JSON.stringify(orders));
-    }
-
-    async function deleteOrder(index) {
+    // Delete single order
+    function deleteOrder(index) {
       if (!confirm('Delete this order?')) return;
-      
       orders.splice(index, 1);
-      
-      try {
-        await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Access-Key': JSONBIN_API_KEY
-          },
-          body: JSON.stringify({ 
-            orders: orders,
-            menuData: menuData,
-            settings: settings,
-            adminPassword: ADMIN_PASSWORD
-          })
-        });
-      } catch (error) {
-        console.log('Cloud update failed');
-      }
-      
-      localStorage.setItem('orders', JSON.stringify(orders));
+      saveOrders();
       displayOrders();
-      alert('✅ Order deleted!');
     }
 
-    async function saveToCloud() {
-      try {
-        const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Access-Key': JSONBIN_API_KEY
-          },
-          body: JSON.stringify({ 
-            orders: orders,
-            menuData: menuData,
-            settings: settings,
-            adminPassword: ADMIN_PASSWORD
-          })
-        });
-        return response.ok;
-      } catch (error) {
-        console.log('Cloud save failed');
-        return false;
-      }
-    }
+    // Clear all orders
+    document.getElementById('clearAllOrders').addEventListener('click', () => {
+      if (!confirm('Delete ALL orders? This cannot be undone!')) return;
+      orders = [];
+      saveOrders();
+      displayOrders();
+      alert('✅ All orders cleared!');
+    });
 
     window.deleteOrder = deleteOrder;
 
-    // === LOGIN SYSTEM ===
+    // Update display with menu and settings
+    function updateDisplay() {
+      // Menu
+      document.getElementById('wed-name-display').textContent = MENU_DATA.wednesday.name;
+      document.getElementById('wed-desc-display').textContent = MENU_DATA.wednesday.desc;
+      document.getElementById('wed-price-display').textContent = '¥' + MENU_DATA.wednesday.price.toLocaleString();
+      document.getElementById('wed-emoji-display').textContent = MENU_DATA.wednesday.emoji;
+      
+      document.getElementById('sat-name-display').textContent = MENU_DATA.saturday.name;
+      document.getElementById('sat-desc-display').textContent = MENU_DATA.saturday.desc;
+      document.getElementById('sat-price-display').textContent = '¥' + MENU_DATA.saturday.price.toLocaleString();
+      document.getElementById('sat-emoji-display').textContent = MENU_DATA.saturday.emoji;
+      
+      // Settings
+      document.getElementById('displayBusinessName').textContent = BUSINESS_SETTINGS.businessName.toUpperCase();
+      document.getElementById('footerBusinessName').textContent = BUSINESS_SETTINGS.businessName;
+      document.getElementById('displayOrderDays').textContent = BUSINESS_SETTINGS.orderDays;
+      document.getElementById('displayEmail').textContent = BUSINESS_SETTINGS.email;
+      document.getElementById('displayEmail').href = 'mailto:' + BUSINESS_SETTINGS.email;
+      document.getElementById('displayPhone').textContent = BUSINESS_SETTINGS.phone;
+    }
+
+    // Login system
     document.getElementById('adminBtn').addEventListener('click', () => {
       if (isLoggedIn) {
         document.getElementById('adminModal').classList.add('active');
@@ -898,100 +644,12 @@
       document.getElementById('adminModal').classList.remove('active');
     });
 
-    // === SAVE MENU ===
-    document.getElementById('saveMenu').addEventListener('click', async () => {
-      menuData.wednesday = {
-        name: document.getElementById('wed-name').value,
-        desc: document.getElementById('wed-desc').value,
-        price: parseInt(document.getElementById('wed-price').value),
-        emoji: document.getElementById('wed-emoji').value
-      };
-      
-      menuData.saturday = {
-        name: document.getElementById('sat-name').value,
-        desc: document.getElementById('sat-desc').value,
-        price: parseInt(document.getElementById('sat-price').value),
-        emoji: document.getElementById('sat-emoji').value
-      };
-      
-      localStorage.setItem('menuData', JSON.stringify(menuData));
-      
-      const saved = await saveToCloud();
-      
-      updateDisplay();
-      
-      if (saved) {
-        alert('✅ Menu updated successfully!\n\n🌐 Changes are now visible on ALL devices!\n\nCustomers will see new prices immediately.');
-      } else {
-        alert('⚠️ Menu updated locally!\n\nCloud sync may have failed. Try saving again.');
-      }
-    });
-
-    // === SAVE SETTINGS ===
-    document.getElementById('saveSettings').addEventListener('click', async () => {
-      settings = {
-        businessName: document.getElementById('businessName').value,
-        phone: document.getElementById('businessPhone').value,
-        email: document.getElementById('businessEmail').value,
-        orderDays: document.getElementById('orderDays').value
-      };
-      
-      localStorage.setItem('settings', JSON.stringify(settings));
-      
-      const saved = await saveToCloud();
-      
-      updateDisplay();
-      
-      if (saved) {
-        alert('✅ Settings saved successfully!\n\n🌐 Changes are now visible on ALL devices!');
-      } else {
-        alert('⚠️ Settings saved locally!\n\nCloud sync may have failed. Try saving again.');
-      }
-    });
-
-    // === CHANGE PASSWORD ===
-    document.getElementById('changePassword').addEventListener('click', async () => {
-      const newPass = document.getElementById('newPassword').value;
-      const confirmPass = document.getElementById('confirmPassword').value;
-      
-      if (!newPass || !confirmPass) {
-        alert('❌ Please enter both password fields!');
-        return;
-      }
-      
-      if (newPass !== confirmPass) {
-        alert('❌ Passwords do not match!');
-        return;
-      }
-      
-      if (newPass.length < 6) {
-        alert('❌ Password must be at least 6 characters!');
-        return;
-      }
-      
-      ADMIN_PASSWORD = newPass;
-      localStorage.setItem('adminPassword', ADMIN_PASSWORD);
-      
-      const saved = await saveToCloud();
-      
-      document.getElementById('newPassword').value = '';
-      document.getElementById('confirmPassword').value = '';
-      
-      if (saved) {
-        alert('✅ Password changed successfully!\n\nNew password: ' + newPass + '\n\nPlease remember this password!');
-      } else {
-        alert('⚠️ Password changed locally!\n\nCloud sync may have failed.');
-      }
-    });
-
-    // === REFRESH ORDERS ===
     document.getElementById('refreshOrders').addEventListener('click', () => {
       loadOrders();
-      alert('🔄 Orders refreshed!');
     });
 
-    // === ORDER FORM ===
-    document.getElementById('orderForm').addEventListener('submit', async (e) => {
+    // Order form submission
+    document.getElementById('orderForm').addEventListener('submit', (e) => {
       e.preventDefault();
       
       const formData = new FormData(e.target);
@@ -1006,13 +664,16 @@
         timestamp: new Date().toLocaleString()
       };
 
-      await saveOrder(order);
+      orders.unshift(order);
+      saveOrders();
       e.target.reset();
-      alert('✅ Order submitted successfully!\n\nWe will contact you soon!');
+      
+      alert('✅ Order submitted successfully!\n\nWe will contact you soon to confirm your order.');
     });
 
-    // === INITIALIZE ===
-    loadData();
+    // Initialize
+    updateDisplay();
+    loadOrders();
   </script>
 
 </body>
